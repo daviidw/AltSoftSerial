@@ -49,6 +49,8 @@ public:
 	int peek();
 	int read();
 	int available();
+	int TX_available();
+	bool TX_State();
 #if ARDUINO >= 100
 	size_t write(uint8_t byte) { writeByte(byte); return 1; }
 	void flush() { flushOutput(); }

@@ -331,6 +331,24 @@ int AltSoftSerial::available(void)
 	return RX_BUFFER_SIZE + head - tail;
 }
 
+int AltSoftSerial::TX_available(void)
+{
+	uint8_t head, tail;
+
+	head = tx_buffer_head;
+	tail = tx_buffer_tail;
+	if (head >= tail) return head - tail;
+	return TX_BUFFER_SIZE + head - tail;
+}
+
+bool AltSoftSerial::TX_State(void)
+{
+	if (tx_state)
+		return true;
+	else
+		return false;
+}
+
 void AltSoftSerial::flushInput(void)
 {
 	rx_buffer_head = rx_buffer_tail;
